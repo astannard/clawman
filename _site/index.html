@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10161B"><!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Clawman — Context, in good claws | Clawman</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Clawman — Context, in good claws" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions." />
+<meta name="twitter:description" property="og:description" content="A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions." />
+<link rel="canonical" href="/" />
+<meta property="og:url" content="/" />
+<meta property="og:site_name" content="Clawman" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Clawman — Context, in good claws" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions.","headline":"Clawman — Context, in good claws","name":"Clawman","url":"/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Clawman" href="/feed.xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/clawman.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">
+      <svg class="mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <span class="brand-name">clawman</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="/features/" >Features</a>
+      <a href="/docs/" >Docs</a>
+      <a href="/api/" >API</a>
+      <a href="/blog/" >Blog</a>
+      <a href="https://github.com/your-github-username/clawman" class="nav-ext">GitHub</a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman" class="btn btn-primary btn-sm">Install</a>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <section class="hero">
+  <div class="shell hero-grid">
+    <div>
+      <span class="eyebrow">VS Code extension</span>
+      <h1>Context,<br>in <span>good claws</span>.</h1>
+      <p class="lede">
+        Claude reads your context files every single time. Clawman makes sure
+        they're still worth reading.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Install for VS Code</a>
+        <a class="btn btn-ghost" href="/features/">See how it works</a>
+      </div>
+      <p class="hero-note">Free and open source. MIT licensed. No account.</p>
+    </div>
+
+    <div class="panel" aria-label="Example of the Clawman panel">
+      <div class="panel-head">
+        <svg class="mark" width="18" height="18" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+        <span class="panel-title">Context files</span>
+        <span class="panel-count">4 found</span>
+      </div>
+      <div class="panel-body">
+        <div class="file-row">
+          <span class="file-dot" style="background:var(--fresh)"></span>
+          <span class="file-path">CLAUDE.md</span>
+          <span class="tag t-fresh">Fresh</span>
+          <span class="file-note">Updated 2 days ago</span>
+        </div>
+        <div class="file-row">
+          <span class="file-dot" style="background:var(--stale)"></span>
+          <span class="file-path">.claude/architecture.md</span>
+          <span class="tag t-stale">Stale</span>
+          <span class="file-note">Not touched since 12 March</span>
+        </div>
+        <div class="file-row">
+          <span class="file-dot" style="background:var(--conflict)"></span>
+          <span class="file-path">.claude/skills/testing.md</span>
+          <span class="tag t-conflict">Conflict</span>
+          <span class="file-note">Disagrees with <code>CLAUDE.md</code></span>
+        </div>
+        <div class="file-row">
+          <span class="file-dot" style="background:var(--archived)"></span>
+          <span class="file-path">.claude/legacy-api.md</span>
+          <span class="tag t-archived">Archived</span>
+          <span class="file-note">Excluded by you</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="band-head">
+      <h2>The problem nobody watches</h2>
+      <p class="lede">
+        Context files start clean. One <code>CLAUDE.md</code>, written carefully on a
+        good afternoon. Six weeks later there are eleven of them, two contradict each
+        other about the test command, and one describes a directory that was deleted
+        in March.
+      </p>
+      <p class="lede">Nobody has read any of them since the day they were written. Except Claude. Every single time.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">01</div>
+        <h3>Everything, in one place</h3>
+        <p>Finds <code>CLAUDE.md</code>, <code>.claude/</code> directories, skills, and memory files anywhere in the workspace — including the ones you forgot you wrote.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">02</div>
+        <h3>Stale files, flagged</h3>
+        <p>When a context file stops changing while the code it describes keeps moving, Clawman says so. With a date, not a vibe.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">03</div>
+        <h3>Contradictions, surfaced</h3>
+        <p>Two files giving Claude opposite instructions is worse than no instructions at all. Clawman shows both excerpts side by side.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">04</div>
+        <h3>Dead references, caught</h3>
+        <p>Context files love to describe directories that no longer exist. Clawman checks every path they mention.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">05</div>
+        <h3>Edit in place</h3>
+        <p>Merge two files, archive one, or jump straight to the line that's wrong. No leaving the editor.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">06</div>
+        <h3>Nothing leaves your machine</h3>
+        <p>Clawman reads files on disk. No telemetry, no uploads, no account. It's a filing clerk, not a service.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="band-head">
+      <h2>Three steps, then it's just there</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Install the extension</h3>
+        <p>From the VS Code Marketplace, or <code>ext install clawman.clawman</code> in the command palette.</p>
+      </div>
+      <div class="step">
+        <h3>Open the Clawman panel</h3>
+        <p>It appears in the activity bar. First scan takes about a second on a normal repo.</p>
+      </div>
+      <div class="step">
+        <h3>Read what he found</h3>
+        <p>Four states: fresh, stale, conflict, archived. Sorted worst-first, because that's the list you actually want.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="band-head">
+      <h2>Built in the open</h2>
+      <p class="lede">Every change lands in the dev log first — what shipped, what broke, and what Clawman noticed along the way.</p>
+    </div>
+
+    <div class="post-list">
+      
+      <a class="post-card" href="/blog/2026/07/09/dead-paths/">
+        <div class="post-meta">
+          <time datetime="2026-07-09T11:00:00+00:00">9 July 2026</time>
+          <span class="tag tag-version">1.4.0</span>
+        </div>
+        <h2>1.4 — he noticed the directory wasn't there</h2>
+        <p>Context files describe directories. Directories move. Clawman now resolves every path mentioned in every context file and flags the ones that have ...</p>
+      </a>
+      
+      <a class="post-card" href="/blog/2026/06/18/conflicts-side-by-side/">
+        <div class="post-meta">
+          <time datetime="2026-06-18T10:30:00+00:00">18 June 2026</time>
+          <span class="tag tag-version">1.3.0</span>
+        </div>
+        <h2>1.3 — conflicts now show both sides</h2>
+        <p>Telling you two files disagree is only half a finding. This release shows you both excerpts, with line numbers, so you can resolve it without openi...</p>
+      </a>
+      
+      <a class="post-card" href="/blog/2026/05/14/hello-clawman/">
+        <div class="post-meta">
+          <time datetime="2026-05-14T09:00:00+00:00">14 May 2026</time>
+          <span class="tag tag-version">1.0.0</span>
+        </div>
+        <h2>Clawman 1.0 — somebody has to keep the shelf tidy</h2>
+        <p>Eleven context files, two of them arguing, one describing a directory that was deleted in March. Here's the extension that came out of noticing.</p>
+      </a>
+      
+    </div>
+
+    <p style="margin-top:var(--s6)"><a href="/blog/">All posts &rarr;</a></p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="cta">
+      <h2>Your assistant is only as good as the notes you left it.</h2>
+      <p class="lede">Clawman keeps the notes honest.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Install for VS Code</a>
+        <a class="btn btn-ghost" href="https://github.com/your-github-username/clawman">View source</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <svg class="mark" width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <div>
+        <div class="brand-name">clawman</div>
+        <p class="footer-tagline">Context, in good claws.</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav">
+      <div>
+        <h4>Product</h4>
+        <a href="/features/">Features</a>
+        <a href="/docs/">Docs</a>
+        <a href="/api/">API</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Marketplace</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="/blog/">Dev log</a>
+        <a href="https://github.com/your-github-username/clawman">Source</a>
+        <a href="https://github.com/your-github-username/clawman/issues">Issues</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="/feed.xml">RSS</a>
+        <a href="https://github.com/your-github-username/clawman/releases">Releases</a>
+      </div>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; 2026 Clawman. MIT licensed.</span>
+    <span>Somebody has to keep the shelf tidy.</span>
+  </div>
+</footer>
+
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

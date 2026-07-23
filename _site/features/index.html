@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10161B"><!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Features | Clawman</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Features" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions." />
+<meta name="twitter:description" property="og:description" content="A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions." />
+<link rel="canonical" href="/features/" />
+<meta property="og:url" content="/features/" />
+<meta property="og:site_name" content="Clawman" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Features" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions.","headline":"Features","url":"/features/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Clawman" href="/feed.xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/clawman.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">
+      <svg class="mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <span class="brand-name">clawman</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="/features/" class="is-active">Features</a>
+      <a href="/docs/" >Docs</a>
+      <a href="/api/" >API</a>
+      <a href="/blog/" >Blog</a>
+      <a href="https://github.com/your-github-username/clawman" class="nav-ext">GitHub</a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman" class="btn btn-primary btn-sm">Install</a>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <article class="shell prose-page">
+  
+  <header class="page-head">
+    <span class="eyebrow">What Clawman does</span>
+    <h1>Features</h1>
+    <p class="lede">One job, done thoroughly. Clawman finds every Claude context file in your project, works out which ones are still true, and tells you where they disagree.</p>
+  </header>
+  
+
+  <div class="prose">
+    <h2 id="the-file-health-scale">The file-health scale</h2>
+
+<p>Every context file Clawman finds gets exactly one of four states. This is the spine of the whole extension — everything else is in service of getting this right.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>What it means</th>
+      <th>What to do</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Fresh</strong></td>
+      <td>Changed recently, consistent with everything else</td>
+      <td>Nothing</td>
+    </tr>
+    <tr>
+      <td><strong>Stale</strong></td>
+      <td>Untouched while the code it describes kept moving</td>
+      <td>Read it. Confirm or fix.</td>
+    </tr>
+    <tr>
+      <td><strong>Conflict</strong></td>
+      <td>Another file gives Claude opposite instructions</td>
+      <td>Resolve. This one costs you the most.</td>
+    </tr>
+    <tr>
+      <td><strong>Archived</strong></td>
+      <td>Deliberately out of scope</td>
+      <td>Nothing. You told him to ignore it.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The list sorts worst-first. Conflicts, then stale, then everything else — because that’s the order you’d actually work through it.</p>
+
+<hr />
+
+<h2 id="discovery">Discovery</h2>
+
+<p>Clawman scans the workspace for the files Claude reads:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">CLAUDE.md</code> at any depth, including nested per-package files in a monorepo</li>
+  <li><code class="language-plaintext highlighter-rouge">.claude/</code> directories and everything in them</li>
+  <li><code class="language-plaintext highlighter-rouge">.claude/skills/</code> skill definitions, including <code class="language-plaintext highlighter-rouge">SKILL.md</code> front matter</li>
+  <li>Memory files and agent definitions</li>
+  <li><code class="language-plaintext highlighter-rouge">.mdc</code> and other convention files, if you point him at them</li>
+</ul>
+
+<p>Anything matched by <code class="language-plaintext highlighter-rouge">.gitignore</code> is skipped by default. You can override that per-pattern in settings.</p>
+
+<div class="callout">
+  <p><strong>Monorepos.</strong> Clawman groups results by package and shows which <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> actually applies at a given path, so you can see what Claude sees when it’s working in <code class="language-plaintext highlighter-rouge">packages/api</code> specifically.</p>
+</div>
+
+<hr />
+
+<h2 id="staleness-detection">Staleness detection</h2>
+
+<p>A file isn’t stale because it’s old. It’s stale because the world moved and it didn’t.</p>
+
+<p>Clawman compares each context file’s last-modified date against commit activity in the paths that file talks about. A <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> describing <code class="language-plaintext highlighter-rouge">src/auth/</code> that hasn’t changed while <code class="language-plaintext highlighter-rouge">src/auth/</code> has seen forty commits is the signal. A README-style file in a stable corner of the repo is left alone.</p>
+
+<p>You get a date and a reason, never a bare warning:</p>
+
+<blockquote>
+  <p>Not touched since 12 March. <code class="language-plaintext highlighter-rouge">src/auth/</code> has changed 41 times since.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="conflict-detection">Conflict detection</h2>
+
+<p>The expensive failure. Two files, both loaded, both authoritative, giving opposite instructions.</p>
+
+<p>Clawman extracts directives — commands, rules, prohibitions, file paths, naming conventions — and compares them across every file that would be in context at the same time. When two disagree, you get both excerpts side by side with line numbers, and a jump-to-line on each.</p>
+
+<p>It catches:</p>
+
+<ul>
+  <li><strong>Command conflicts</strong> — two files, two different test commands</li>
+  <li><strong>Rule conflicts</strong> — one file says always, another says never</li>
+  <li><strong>Convention conflicts</strong> — disagreement on naming, structure, or style</li>
+  <li><strong>Scope overlap</strong> — two files claiming authority over the same directory</li>
+</ul>
+
+<hr />
+
+<h2 id="dead-reference-checking">Dead reference checking</h2>
+
+<p>Context files love to describe directories that no longer exist. Clawman resolves every path mentioned in every context file and flags the ones that have gone.</p>
+
+<p>Also catches references to commands that aren’t in <code class="language-plaintext highlighter-rouge">package.json</code> scripts any more, and links to files that have moved.</p>
+
+<hr />
+
+<h2 id="working-with-what-he-finds">Working with what he finds</h2>
+
+<ul>
+  <li><strong>Merge</strong> — combine two overlapping files, with a diff preview before anything is written</li>
+  <li><strong>Archive</strong> — mark a file out of scope. It stays on disk and stays visible, just stops being flagged.</li>
+  <li><strong>Jump to line</strong> — every finding links straight to the exact line</li>
+  <li><strong>Bulk tidy</strong> — resolve everything trivial in one pass, and see a summary of what changed</li>
+</ul>
+
+<p>Nothing is written without showing you the diff first.</p>
+
+<hr />
+
+<h2 id="settings-worth-knowing">Settings worth knowing</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Setting</th>
+      <th>Default</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">clawman.scanOnStartup</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td>Scan when the workspace opens</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">clawman.staleThresholdDays</code></td>
+      <td><code class="language-plaintext highlighter-rouge">60</code></td>
+      <td>How long before an untouched file is a candidate for stale</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">clawman.respectGitignore</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td>Skip ignored paths</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">clawman.includeGlobs</code></td>
+      <td><code class="language-plaintext highlighter-rouge">[]</code></td>
+      <td>Extra patterns to treat as context files</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">clawman.conflictSensitivity</code></td>
+      <td><code class="language-plaintext highlighter-rouge">"balanced"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">strict</code>, <code class="language-plaintext highlighter-rouge">balanced</code>, or <code class="language-plaintext highlighter-rouge">relaxed</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="what-clawman-doesnt-do">What Clawman doesn’t do</h2>
+
+<p>Worth being clear about, because a tool that overpromises is a tool you stop trusting.</p>
+
+<ul>
+  <li><strong>He doesn’t write your context files.</strong> He tells you which ones are wrong. Fixing them is a judgement call and it’s yours.</li>
+  <li><strong>He doesn’t have opinions about your architecture.</strong> He’s a clerk, not a reviewer.</li>
+  <li><strong>He doesn’t send anything anywhere.</strong> No telemetry, no uploads, no account, no network calls. He reads files on disk.</li>
+  <li><strong>He doesn’t run Claude.</strong> Clawman is about the files Claude reads, not the conversation.</li>
+</ul>
+
+<div class="callout">
+  <p>Missing something you need? The <a href="/blog/">dev log</a> covers what’s coming, and <a href="https://github.com/your-github-username/clawman/issues">issues</a> is the right place to argue for it.</p>
+</div>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <svg class="mark" width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <div>
+        <div class="brand-name">clawman</div>
+        <p class="footer-tagline">Context, in good claws.</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav">
+      <div>
+        <h4>Product</h4>
+        <a href="/features/">Features</a>
+        <a href="/docs/">Docs</a>
+        <a href="/api/">API</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Marketplace</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="/blog/">Dev log</a>
+        <a href="https://github.com/your-github-username/clawman">Source</a>
+        <a href="https://github.com/your-github-username/clawman/issues">Issues</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="/feed.xml">RSS</a>
+        <a href="https://github.com/your-github-username/clawman/releases">Releases</a>
+      </div>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; 2026 Clawman. MIT licensed.</span>
+    <span>Somebody has to keep the shelf tidy.</span>
+  </div>
+</footer>
+
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

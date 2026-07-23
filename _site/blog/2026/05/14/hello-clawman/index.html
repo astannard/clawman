@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10161B"><!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Clawman 1.0 — somebody has to keep the shelf tidy | Clawman</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Clawman 1.0 — somebody has to keep the shelf tidy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This started with a bad afternoon of debugging." />
+<meta name="twitter:description" property="og:description" content="This started with a bad afternoon of debugging." />
+<link rel="canonical" href="/blog/2026/05/14/hello-clawman/" />
+<meta property="og:url" content="/blog/2026/05/14/hello-clawman/" />
+<meta property="og:site_name" content="Clawman" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-14T09:00:00+00:00" />
+<meta property="article:modified_time" content="2026-05-14T09:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Clawman 1.0 — somebody has to keep the shelf tidy" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-05-14T09:00:00+00:00","datePublished":"2026-05-14T09:00:00+00:00","description":"This started with a bad afternoon of debugging.","headline":"Clawman 1.0 — somebody has to keep the shelf tidy","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/2026/05/14/hello-clawman/"},"url":"/blog/2026/05/14/hello-clawman/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Clawman" href="/feed.xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/clawman.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">
+      <svg class="mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <span class="brand-name">clawman</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="/features/" >Features</a>
+      <a href="/docs/" >Docs</a>
+      <a href="/api/" >API</a>
+      <a href="/blog/" class="is-active">Blog</a>
+      <a href="https://github.com/your-github-username/clawman" class="nav-ext">GitHub</a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman" class="btn btn-primary btn-sm">Install</a>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <article class="shell prose-page">
+  <header class="page-head">
+    <a class="back-link" href="/blog/">&larr; Dev log</a>
+
+    <div class="post-meta">
+      <time datetime="2026-05-14T09:00:00+00:00">14 May 2026</time>
+      <span class="tag tag-version">1.0.0</span>
+      <span class="tag">release</span>
+    </div>
+
+    <h1>Clawman 1.0 — somebody has to keep the shelf tidy</h1>
+    <p class="lede">Eleven context files, two of them arguing, one describing a directory that was deleted in March. Here's the extension that came out of noticing.</p>
+  </header>
+
+  <div class="prose">
+    <p>This started with a bad afternoon of debugging.</p>
+
+<p>Claude had been getting steadily worse on one of our repos. Not dramatically — just enough that everyone had quietly started double-checking its output, then quietly started using it less. The assumption in the room was that something had changed on the model side.</p>
+
+<p>Nothing had changed on the model side. What had changed was that we had, over about four months, accumulated eleven context files. Two of them gave opposite instructions about the test command. One described a directory structure we’d refactored away in March. Three had been written by someone who left in February and nobody had opened since.</p>
+
+<p>Claude was reading all of it. Every single time. And doing an admirable job of trying to satisfy eleven documents that did not agree with each other.</p>
+
+<h2 id="the-failure-mode">The failure mode</h2>
+
+<p>Context rot is invisible in a way that most technical debt isn’t.</p>
+
+<p>A broken build fails loudly. A slow query shows up in a dashboard. But a context file that stopped being true six weeks ago produces output that is subtly, unfalsifiably a bit worse — and the natural place to assign blame is the model, because the file is not something anyone is looking at.</p>
+
+<p>Nobody reads context files. That’s not a criticism, it’s a structural fact: they’re written once, at a moment of high intention, and then they’re infrastructure. You don’t reread your <code class="language-plaintext highlighter-rouge">.gitignore</code> either.</p>
+
+<p>The difference is that a stale <code class="language-plaintext highlighter-rouge">.gitignore</code> doesn’t quietly instruct an assistant to do the wrong thing several hundred times a week.</p>
+
+<h2 id="what-10-does">What 1.0 does</h2>
+
+<p>Clawman lives in your sidebar and does one unglamorous job: he finds every context file in the workspace and tells you which ones you can still trust.</p>
+
+<ul>
+  <li><strong>Discovery</strong> — <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> at any depth, <code class="language-plaintext highlighter-rouge">.claude/</code> directories, skills, memory files. Including the ones you forgot about, which in our case was four of the eleven.</li>
+  <li><strong>Staleness</strong> — not “this file is old,” which is useless, but “this file hasn’t changed while the code it describes has changed forty-one times.” With the date and the count, so you can disagree with him.</li>
+  <li><strong>Conflicts</strong> — the expensive one. Two files both loaded into context, both authoritative, giving different instructions. You get both excerpts and a jump-to-line on each.</li>
+  <li><strong>Archive</strong> — because some files are old and completely fine, and a tool that can’t take <em>no</em> for an answer is a tool you uninstall.</li>
+</ul>
+
+<h2 id="what-he-deliberately-doesnt-do">What he deliberately doesn’t do</h2>
+
+<p>He doesn’t rewrite your context files. Deciding what’s true about your codebase is a judgement call and it isn’t his.</p>
+
+<p>He doesn’t have opinions about your architecture. He’s a clerk.</p>
+
+<p>He doesn’t send anything anywhere. No telemetry, no uploads, no account, no network calls at all. He reads files on disk and that is the entire surface area.</p>
+
+<h2 id="try-it-on-a-repo-youve-had-a-while">Try it on a repo you’ve had a while</h2>
+
+<p>The first scan on an established project is usually uncomfortable. That’s the tool working — it’s showing you a thing that was already true and simply wasn’t visible.</p>
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Install for VS Code</a>, open the panel, and see what’s in there.</p>
+
+  </div>
+
+  <footer class="post-foot">
+    
+    
+    
+    
+    
+    
+    <div class="post-nav">
+      <a href="/blog/2026/06/18/conflicts-side-by-side/"><span>Newer</span>1.3 — conflicts now show both sides</a>
+      
+    </div>
+
+    <div class="post-cta">
+      <p>Clawman is built in the open. Every change lands here first.</p>
+      <a class="btn btn-ghost" href="/feed.xml">Subscribe via RSS</a>
+      <a class="btn btn-primary" href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Install for VS Code</a>
+    </div>
+  </footer>
+</article>
+
+  </main>
+  <footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <svg class="mark" width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <div>
+        <div class="brand-name">clawman</div>
+        <p class="footer-tagline">Context, in good claws.</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav">
+      <div>
+        <h4>Product</h4>
+        <a href="/features/">Features</a>
+        <a href="/docs/">Docs</a>
+        <a href="/api/">API</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Marketplace</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="/blog/">Dev log</a>
+        <a href="https://github.com/your-github-username/clawman">Source</a>
+        <a href="https://github.com/your-github-username/clawman/issues">Issues</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="/feed.xml">RSS</a>
+        <a href="https://github.com/your-github-username/clawman/releases">Releases</a>
+      </div>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; 2026 Clawman. MIT licensed.</span>
+    <span>Somebody has to keep the shelf tidy.</span>
+  </div>
+</footer>
+
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

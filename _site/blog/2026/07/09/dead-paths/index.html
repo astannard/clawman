@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10161B"><!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>1.4 — he noticed the directory wasn’t there | Clawman</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="1.4 — he noticed the directory wasn’t there" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Clawman has been wanting to mention this for a while." />
+<meta name="twitter:description" property="og:description" content="Clawman has been wanting to mention this for a while." />
+<link rel="canonical" href="/blog/2026/07/09/dead-paths/" />
+<meta property="og:url" content="/blog/2026/07/09/dead-paths/" />
+<meta property="og:site_name" content="Clawman" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-07-09T11:00:00+00:00" />
+<meta property="article:modified_time" content="2026-07-09T11:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="1.4 — he noticed the directory wasn’t there" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-07-09T11:00:00+00:00","datePublished":"2026-07-09T11:00:00+00:00","description":"Clawman has been wanting to mention this for a while.","headline":"1.4 — he noticed the directory wasn’t there","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/2026/07/09/dead-paths/"},"url":"/blog/2026/07/09/dead-paths/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Clawman" href="/feed.xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/clawman.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">
+      <svg class="mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <span class="brand-name">clawman</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="/features/" >Features</a>
+      <a href="/docs/" >Docs</a>
+      <a href="/api/" >API</a>
+      <a href="/blog/" class="is-active">Blog</a>
+      <a href="https://github.com/your-github-username/clawman" class="nav-ext">GitHub</a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman" class="btn btn-primary btn-sm">Install</a>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <article class="shell prose-page">
+  <header class="page-head">
+    <a class="back-link" href="/blog/">&larr; Dev log</a>
+
+    <div class="post-meta">
+      <time datetime="2026-07-09T11:00:00+00:00">9 July 2026</time>
+      <span class="tag tag-version">1.4.0</span>
+      <span class="tag">release</span><span class="tag">detection</span>
+    </div>
+
+    <h1>1.4 — he noticed the directory wasn't there</h1>
+    <p class="lede">Context files describe directories. Directories move. Clawman now resolves every path mentioned in every context file and flags the ones that have gone.</p>
+  </header>
+
+  <div class="prose">
+    <p>Clawman has been wanting to mention this for a while.</p>
+
+<p>Context files are full of paths. <em>“Auth logic lives in <code class="language-plaintext highlighter-rouge">src/auth/</code>.”</em> <em>“Migrations go in <code class="language-plaintext highlighter-rouge">db/migrate/</code>, never in <code class="language-plaintext highlighter-rouge">db/</code>.”</em> <em>“See <code class="language-plaintext highlighter-rouge">docs/architecture/overview.md</code> for the full picture.”</em> These are the most useful sentences in a context file, because they orient the assistant before it starts searching.</p>
+
+<p>They’re also the sentences most likely to be quietly wrong, because directories move and nobody greps the context files afterwards.</p>
+
+<h2 id="dead-path-detection">Dead path detection</h2>
+
+<p>Every path mentioned in every context file now gets resolved against the actual workspace. Ones that don’t exist get flagged with the path as written and where Clawman looked:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DEAD REFERENCE · CLAUDE.md:22
+
+  "Auth logic lives in src/auth/"
+
+  No such path. Closest match: src/services/auth/
+  (renamed in 4f2a91c, 6 weeks ago)
+</code></pre></div></div>
+
+<p>Where the git history makes it obvious — a rename in a single commit — you get the closest match and the commit that did it. Where it doesn’t, you just get told the path is gone, which is still the useful half.</p>
+
+<p>It also checks:</p>
+
+<ul>
+  <li><strong>Commands against <code class="language-plaintext highlighter-rouge">package.json</code></strong> — a context file telling Claude to run <code class="language-plaintext highlighter-rouge">npm run lint:strict</code> when that script was removed two months ago</li>
+  <li><strong>Relative links between context files</strong> — <code class="language-plaintext highlighter-rouge">.claude/</code> files referencing each other after a reorganisation</li>
+  <li><strong>Config files by name</strong> — references to a <code class="language-plaintext highlighter-rouge">.eslintrc</code> that became <code class="language-plaintext highlighter-rouge">eslint.config.mjs</code></li>
+</ul>
+
+<h2 id="what-this-turned-up">What this turned up</h2>
+
+<p>I ran it across eight repos, including three that had been through Clawman 1.3 and come out clean.</p>
+
+<p>Every single one had at least one dead path. The median was four. The worst had nineteen, in a context file that had been rewritten wholesale after a restructure — except the restructure happened twice, and the second one wasn’t reflected anywhere.</p>
+
+<p>The pattern is consistent: dead paths cluster in the <em>oldest and most confidently-written</em> sections of a context file. The paragraph someone sat down and composed carefully at the start of the project is exactly the paragraph describing a structure that no longer exists.</p>
+
+<p>That’s an uncomfortable thing to learn about documentation in general, and I don’t have a tidy conclusion about it.</p>
+
+<h2 id="also-in-this-release">Also in this release</h2>
+
+<ul>
+  <li>Conflict view now shows both excerpts without expanding, when they’re short enough to fit</li>
+  <li>Added <code class="language-plaintext highlighter-rouge">clawman.alwaysArchive</code> for glob patterns that should never be flagged — for vendored or generated context files you don’t control</li>
+  <li>The panel remembers scroll position between rescans</li>
+  <li>Fixed: dead path detection ignoring paths inside fenced code blocks, which was the correct call about 80% of the time and is now configurable</li>
+  <li>Fixed: rescanning a workspace with no context files showed a spinner indefinitely</li>
+</ul>
+
+<h2 id="next">Next</h2>
+
+<p>The thing I keep circling is <strong>ownership</strong>. A context file with no clear author, last touched by someone who left, is a different kind of risk from one the current team actively maintains — and git already knows which is which.</p>
+
+<p>Not sure yet whether that’s a state, a signal that feeds staleness, or just a column. If you have a view, <a href="https://github.com/your-github-username/clawman/issues">the issue is open</a>.</p>
+
+  </div>
+
+  <footer class="post-foot">
+    
+    
+    
+    
+    
+    
+    <div class="post-nav">
+      <span></span>
+      <a class="ta-r" href="/blog/2026/06/18/conflicts-side-by-side/"><span>Older</span>1.3 — conflicts now show both sides</a>
+    </div>
+
+    <div class="post-cta">
+      <p>Clawman is built in the open. Every change lands here first.</p>
+      <a class="btn btn-ghost" href="/feed.xml">Subscribe via RSS</a>
+      <a class="btn btn-primary" href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Install for VS Code</a>
+    </div>
+  </footer>
+</article>
+
+  </main>
+  <footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <svg class="mark" width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <div>
+        <div class="brand-name">clawman</div>
+        <p class="footer-tagline">Context, in good claws.</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav">
+      <div>
+        <h4>Product</h4>
+        <a href="/features/">Features</a>
+        <a href="/docs/">Docs</a>
+        <a href="/api/">API</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Marketplace</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="/blog/">Dev log</a>
+        <a href="https://github.com/your-github-username/clawman">Source</a>
+        <a href="https://github.com/your-github-username/clawman/issues">Issues</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="/feed.xml">RSS</a>
+        <a href="https://github.com/your-github-username/clawman/releases">Releases</a>
+      </div>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; 2026 Clawman. MIT licensed.</span>
+    <span>Somebody has to keep the shelf tidy.</span>
+  </div>
+</footer>
+
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

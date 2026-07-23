@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10161B"><!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>1.3 — conflicts now show both sides | Clawman</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="1.3 — conflicts now show both sides" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The most common piece of feedback on 1.0 was some version of: “okay, but which part?”" />
+<meta name="twitter:description" property="og:description" content="The most common piece of feedback on 1.0 was some version of: “okay, but which part?”" />
+<link rel="canonical" href="/blog/2026/06/18/conflicts-side-by-side/" />
+<meta property="og:url" content="/blog/2026/06/18/conflicts-side-by-side/" />
+<meta property="og:site_name" content="Clawman" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-18T10:30:00+00:00" />
+<meta property="article:modified_time" content="2026-06-18T10:30:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="1.3 — conflicts now show both sides" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-06-18T10:30:00+00:00","datePublished":"2026-06-18T10:30:00+00:00","description":"The most common piece of feedback on 1.0 was some version of: “okay, but which part?”","headline":"1.3 — conflicts now show both sides","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/2026/06/18/conflicts-side-by-side/"},"url":"/blog/2026/06/18/conflicts-side-by-side/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Clawman" href="/feed.xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/clawman.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">
+      <svg class="mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <span class="brand-name">clawman</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="/features/" >Features</a>
+      <a href="/docs/" >Docs</a>
+      <a href="/api/" >API</a>
+      <a href="/blog/" class="is-active">Blog</a>
+      <a href="https://github.com/your-github-username/clawman" class="nav-ext">GitHub</a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman" class="btn btn-primary btn-sm">Install</a>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <article class="shell prose-page">
+  <header class="page-head">
+    <a class="back-link" href="/blog/">&larr; Dev log</a>
+
+    <div class="post-meta">
+      <time datetime="2026-06-18T10:30:00+00:00">18 June 2026</time>
+      <span class="tag tag-version">1.3.0</span>
+      <span class="tag">release</span><span class="tag">conflicts</span>
+    </div>
+
+    <h1>1.3 — conflicts now show both sides</h1>
+    <p class="lede">Telling you two files disagree is only half a finding. This release shows you both excerpts, with line numbers, so you can resolve it without opening anything.</p>
+  </header>
+
+  <div class="prose">
+    <p>The most common piece of feedback on 1.0 was some version of: <em>“okay, but which part?”</em></p>
+
+<p>Fair. Clawman would tell you that <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> and <code class="language-plaintext highlighter-rouge">.claude/skills/testing.md</code> disagreed, and then leave you to open both files and hunt for it. For a big context file that’s a genuinely annoying two minutes, and two minutes of friction is enough that people stop resolving conflicts at all.</p>
+
+<h2 id="both-excerpts-side-by-side">Both excerpts, side by side</h2>
+
+<p>Conflicts now expand in place. You get the actual conflicting lines from each file, with line numbers and enough surrounding context to tell whether it’s a real contradiction or two statements that merely look similar.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONFLICT · test command
+
+CLAUDE.md:14
+  Run the full suite with `npm test` before every commit.
+
+.claude/skills/testing.md:31
+  Always use `pnpm test:ci` — `npm test` skips the integration tags.
+</code></pre></div></div>
+
+<p>Both line references jump straight to the file. Resolve by editing either one, or by archiving the one that’s wrong. Clawman re-checks on save.</p>
+
+<h2 id="four-kinds-of-conflict">Four kinds of conflict</h2>
+
+<p>The detector now classifies what it finds, which mostly matters because it lets you ignore whole categories when they’re noisy:</p>
+
+<ul>
+  <li><strong>Command conflicts</strong> — two files, two different commands for the same job. Highest signal by a distance. This is the one that costs you real time.</li>
+  <li><strong>Rule conflicts</strong> — one file says always, another says never.</li>
+  <li><strong>Convention conflicts</strong> — disagreement about naming, structure, or file layout.</li>
+  <li><strong>Scope overlap</strong> — two files both claiming authority over the same directory. Not always wrong, but worth a look in a monorepo.</li>
+</ul>
+
+<h2 id="sensitivity-because-the-first-scan-is-brutal">Sensitivity, because the first scan is brutal</h2>
+
+<p>A repo that’s never been audited lights up. That’s accurate, and it’s also demoralising, and a demoralising first run is how you lose someone in the first ninety seconds.</p>
+
+<p>So there’s now <code class="language-plaintext highlighter-rouge">clawman.conflictSensitivity</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">strict</code> — flags any directive that differs, including phrasing. Noisy. Good for a deliberate one-off audit.</li>
+  <li><code class="language-plaintext highlighter-rouge">balanced</code> — semantic disagreements only. The default.</li>
+  <li><code class="language-plaintext highlighter-rouge">relaxed</code> — direct contradictions only, like two different values for the same command. A reasonable place to start on a big old repo, then work up.</li>
+</ul>
+
+<h2 id="also-in-this-release">Also in this release</h2>
+
+<ul>
+  <li>Conflict detection now understands that a nested <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> overrides its parent for paths beneath it, rather than reporting the override as a conflict. This was the single largest source of false positives in monorepos.</li>
+  <li>Findings re-check on save instead of only on rescan.</li>
+  <li>Fixed: symlinked <code class="language-plaintext highlighter-rouge">.claude/</code> directories were being skipped entirely. If you symlink a shared context directory across repos, 1.0 was silently ignoring all of it.</li>
+  <li>Fixed: files with CRLF line endings reported line numbers one off.</li>
+</ul>
+
+<h2 id="next">Next</h2>
+
+<p>Dead path detection is the thing I keep wanting and it isn’t built yet. Context files describe directories constantly, and those directories move. Working on it.</p>
+
+  </div>
+
+  <footer class="post-foot">
+    
+    
+    
+    
+    
+    
+    <div class="post-nav">
+      <a href="/blog/2026/07/09/dead-paths/"><span>Newer</span>1.4 — he noticed the directory wasn't there</a>
+      <a class="ta-r" href="/blog/2026/05/14/hello-clawman/"><span>Older</span>Clawman 1.0 — somebody has to keep the shelf tidy</a>
+    </div>
+
+    <div class="post-cta">
+      <p>Clawman is built in the open. Every change lands here first.</p>
+      <a class="btn btn-ghost" href="/feed.xml">Subscribe via RSS</a>
+      <a class="btn btn-primary" href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Install for VS Code</a>
+    </div>
+  </footer>
+</article>
+
+  </main>
+  <footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <svg class="mark" width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <div>
+        <div class="brand-name">clawman</div>
+        <p class="footer-tagline">Context, in good claws.</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav">
+      <div>
+        <h4>Product</h4>
+        <a href="/features/">Features</a>
+        <a href="/docs/">Docs</a>
+        <a href="/api/">API</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Marketplace</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="/blog/">Dev log</a>
+        <a href="https://github.com/your-github-username/clawman">Source</a>
+        <a href="https://github.com/your-github-username/clawman/issues">Issues</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="/feed.xml">RSS</a>
+        <a href="https://github.com/your-github-username/clawman/releases">Releases</a>
+      </div>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; 2026 Clawman. MIT licensed.</span>
+    <span>Somebody has to keep the shelf tidy.</span>
+  </div>
+</footer>
+
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

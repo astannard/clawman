@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>/blog/2026/05/14/hello-clawman/</loc>
+<lastmod>2026-05-14T09:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>/blog/2026/06/18/conflicts-side-by-side/</loc>
+<lastmod>2026-06-18T10:30:00+00:00</lastmod>
+</url>
+<url>
+<loc>/blog/2026/07/09/dead-paths/</loc>
+<lastmod>2026-07-09T11:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>/api/</loc>
+</url>
+<url>
+<loc>/blog/</loc>
+</url>
+<url>
+<loc>/docs/</loc>
+</url>
+<url>
+<loc>/features/</loc>
+</url>
+<url>
+<loc>/</loc>
+</url>
+</urlset>

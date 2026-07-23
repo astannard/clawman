@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10161B"><!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Dev log | Clawman</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Dev log" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="What shipped, what broke, and what Clawman noticed along the way." />
+<meta name="twitter:description" property="og:description" content="What shipped, what broke, and what Clawman noticed along the way." />
+<link rel="canonical" href="/blog/" />
+<meta property="og:url" content="/blog/" />
+<meta property="og:site_name" content="Clawman" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Dev log" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"What shipped, what broke, and what Clawman noticed along the way.","headline":"Dev log","url":"/blog/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Clawman" href="/feed.xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/clawman.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">
+      <svg class="mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <span class="brand-name">clawman</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="/features/" >Features</a>
+      <a href="/docs/" >Docs</a>
+      <a href="/api/" >API</a>
+      <a href="/blog/" class="is-active">Blog</a>
+      <a href="https://github.com/your-github-username/clawman" class="nav-ext">GitHub</a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman" class="btn btn-primary btn-sm">Install</a>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <div class="shell prose-page">
+  <header class="page-head">
+    <span class="eyebrow">Dev log</span>
+    <h1>What shipped, and why</h1>
+    <p class="lede">
+      Every change to Clawman lands here first — new detections, things that broke,
+      and the occasional note about what he found in someone else's repo.
+      <a href="/feed.xml">RSS</a>.
+    </p>
+  </header>
+
+  <div class="post-list">
+    
+    <a class="post-card" href="/blog/2026/07/09/dead-paths/">
+      <div class="post-meta">
+        <time datetime="2026-07-09T11:00:00+00:00">9 July 2026</time>
+        <span class="tag tag-version">1.4.0</span>
+        <span class="tag">release</span><span class="tag">detection</span>
+      </div>
+      <h2>1.4 — he noticed the directory wasn't there</h2>
+      <p>Context files describe directories. Directories move. Clawman now resolves every path mentioned in every context file and flags the ones that have gone.</p>
+    </a>
+    
+    <a class="post-card" href="/blog/2026/06/18/conflicts-side-by-side/">
+      <div class="post-meta">
+        <time datetime="2026-06-18T10:30:00+00:00">18 June 2026</time>
+        <span class="tag tag-version">1.3.0</span>
+        <span class="tag">release</span><span class="tag">conflicts</span>
+      </div>
+      <h2>1.3 — conflicts now show both sides</h2>
+      <p>Telling you two files disagree is only half a finding. This release shows you both excerpts, with line numbers, so you can resolve it without opening anything.</p>
+    </a>
+    
+    <a class="post-card" href="/blog/2026/05/14/hello-clawman/">
+      <div class="post-meta">
+        <time datetime="2026-05-14T09:00:00+00:00">14 May 2026</time>
+        <span class="tag tag-version">1.0.0</span>
+        <span class="tag">release</span>
+      </div>
+      <h2>Clawman 1.0 — somebody has to keep the shelf tidy</h2>
+      <p>Eleven context files, two of them arguing, one describing a directory that was deleted in March. Here's the extension that came out of noticing.</p>
+    </a>
+    
+  </div>
+
+  
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <svg class="mark" width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <div>
+        <div class="brand-name">clawman</div>
+        <p class="footer-tagline">Context, in good claws.</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav">
+      <div>
+        <h4>Product</h4>
+        <a href="/features/">Features</a>
+        <a href="/docs/">Docs</a>
+        <a href="/api/">API</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Marketplace</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="/blog/">Dev log</a>
+        <a href="https://github.com/your-github-username/clawman">Source</a>
+        <a href="https://github.com/your-github-username/clawman/issues">Issues</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="/feed.xml">RSS</a>
+        <a href="https://github.com/your-github-username/clawman/releases">Releases</a>
+      </div>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; 2026 Clawman. MIT licensed.</span>
+    <span>Somebody has to keep the shelf tidy.</span>
+  </div>
+</footer>
+
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

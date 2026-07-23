@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10161B"><!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Docs | Clawman</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions." />
+<meta name="twitter:description" property="og:description" content="A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions." />
+<link rel="canonical" href="/docs/" />
+<meta property="og:url" content="/docs/" />
+<meta property="og:site_name" content="Clawman" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions.","headline":"Docs","url":"/docs/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Clawman" href="/feed.xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/clawman.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">
+      <svg class="mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <span class="brand-name">clawman</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="/features/" >Features</a>
+      <a href="/docs/" class="is-active">Docs</a>
+      <a href="/api/" >API</a>
+      <a href="/blog/" >Blog</a>
+      <a href="https://github.com/your-github-username/clawman" class="nav-ext">GitHub</a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman" class="btn btn-primary btn-sm">Install</a>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <article class="shell prose-page">
+  
+  <header class="page-head">
+    <span class="eyebrow">Install and configure</span>
+    <h1>Docs</h1>
+    <p class="lede">Getting Clawman running takes about thirty seconds. Getting him tuned to your repo takes a bit longer, and this page covers both.</p>
+  </header>
+  
+
+  <div class="prose">
+    <h2 id="install">Install</h2>
+
+<p><strong>From the Marketplace</strong> — search for <em>Clawman</em> in the Extensions view, or install directly from the <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Marketplace listing</a>.</p>
+
+<p><strong>From the command palette</strong> — <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ext install clawman.clawman
+</code></pre></div></div>
+
+<p><strong>From a VSIX</strong> — download the latest from <a href="https://github.com/your-github-username/clawman/releases">Releases</a>, then:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>code <span class="nt">--install-extension</span> clawman-1.4.0.vsix
+</code></pre></div></div>
+
+<p>Requires VS Code 1.85 or later.</p>
+
+<hr />
+
+<h2 id="first-run">First run</h2>
+
+<p>Open the Clawman panel from the activity bar. He scans on open — a typical repo takes under a second, a large monorepo a few seconds.</p>
+
+<p>You’ll get a list of every context file, grouped by directory, each with a state and a one-line reason.</p>
+
+<p>If the list is empty and you expected files, check:</p>
+
+<ul>
+  <li>The files are inside the open workspace folder</li>
+  <li>They aren’t matched by <code class="language-plaintext highlighter-rouge">.gitignore</code> (or set <code class="language-plaintext highlighter-rouge">clawman.respectGitignore</code> to <code class="language-plaintext highlighter-rouge">false</code>)</li>
+  <li>They match a recognised name or a pattern in <code class="language-plaintext highlighter-rouge">clawman.includeGlobs</code></li>
+</ul>
+
+<hr />
+
+<h2 id="commands">Commands</h2>
+
+<p>All available from the command palette.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Default binding</th>
+      <th>What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Clawman: Rescan workspace</code></td>
+      <td><kbd>Cmd</kbd>+<kbd>Alt</kbd>+<kbd>K</kbd></td>
+      <td>Full rescan</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Clawman: Show conflicts</code></td>
+      <td>—</td>
+      <td>Filter to conflicts only</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Clawman: Tidy up</code></td>
+      <td>—</td>
+      <td>Resolve trivial findings, with a diff preview</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Clawman: Archive file</code></td>
+      <td>—</td>
+      <td>Mark the current file out of scope</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Clawman: Explain this finding</code></td>
+      <td>—</td>
+      <td>Why Clawman flagged it</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Settings live under <code class="language-plaintext highlighter-rouge">clawman.*</code> in your <code class="language-plaintext highlighter-rouge">settings.json</code>.</p>
+
+<div class="language-jsonc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="c1">// Scan when the workspace opens</span><span class="w">
+  </span><span class="nl">"clawman.scanOnStartup"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+
+  </span><span class="c1">// Days a file can sit untouched before it's a stale candidate</span><span class="w">
+  </span><span class="nl">"clawman.staleThresholdDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+
+  </span><span class="c1">// Skip paths matched by .gitignore</span><span class="w">
+  </span><span class="nl">"clawman.respectGitignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+
+  </span><span class="c1">// Extra patterns to treat as context files</span><span class="w">
+  </span><span class="nl">"clawman.includeGlobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"docs/ai/**/*.md"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">".cursor/rules/*.mdc"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+
+  </span><span class="c1">// Never flag these, even if they look stale</span><span class="w">
+  </span><span class="nl">"clawman.alwaysArchive"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"**/legacy/**"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+
+  </span><span class="c1">// strict | balanced | relaxed</span><span class="w">
+  </span><span class="nl">"clawman.conflictSensitivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"balanced"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="conflict-sensitivity">Conflict sensitivity</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">strict</code></strong> — flags any directive that differs, including phrasing. Noisy, but catches everything. Useful for a one-off audit.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">balanced</code></strong> — flags semantic disagreements. The default, and the right choice for daily use.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">relaxed</code></strong> — only flags direct contradictions like two different values for the same command.</li>
+</ul>
+
+<h3 id="per-project-settings">Per-project settings</h3>
+
+<p>Commit a <code class="language-plaintext highlighter-rouge">.vscode/settings.json</code> with your <code class="language-plaintext highlighter-rouge">clawman.*</code> block so everyone on the team gets the same scan behaviour. This matters more than it sounds: if one person’s Clawman flags a conflict and another’s doesn’t, you’ll spend a meeting on it.</p>
+
+<hr />
+
+<h2 id="understanding-a-finding">Understanding a finding</h2>
+
+<p>Every finding has a state, a reason, and a location. Click any of them to jump to the exact line.</p>
+
+<p><strong>Stale</strong> shows you the file’s last-modified date and the commit activity in the paths it describes. If the reason doesn’t hold — a file can be old and perfectly correct — archive it, and Clawman stops asking.</p>
+
+<p><strong>Conflict</strong> shows both excerpts side by side. Resolve it by editing either file, or by archiving one. Clawman re-checks on save.</p>
+
+<p><strong>Dead reference</strong> shows the path as written and where he looked for it. Usually a rename that a context file missed.</p>
+
+<hr />
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p><strong>The scan is slow.</strong> Turn off <code class="language-plaintext highlighter-rouge">scanOnStartup</code> and rescan manually, or narrow <code class="language-plaintext highlighter-rouge">includeGlobs</code>. Very large monorepos with deep <code class="language-plaintext highlighter-rouge">node_modules</code> are the usual culprit — check <code class="language-plaintext highlighter-rouge">respectGitignore</code> is on.</p>
+
+<p><strong>Too many conflicts.</strong> Drop <code class="language-plaintext highlighter-rouge">conflictSensitivity</code> to <code class="language-plaintext highlighter-rouge">relaxed</code> and work up. A repo that’s never been audited will light up the first time; that’s the tool working.</p>
+
+<p><strong>A file keeps getting flagged and it’s fine.</strong> Archive it. That’s what archive is for, and it persists in workspace state.</p>
+
+<p><strong>Findings don’t update after an edit.</strong> Clawman re-checks on save, not on keystroke. Save the file, or run <code class="language-plaintext highlighter-rouge">Clawman: Rescan workspace</code>.</p>
+
+<hr />
+
+<h2 id="contributing">Contributing</h2>
+
+<p>Clawman is MIT licensed and developed in the open at <a href="https://github.com/your-github-username/clawman">github.com/your-github-username/clawman</a>.</p>
+
+<p>Bug reports want: VS Code version, Clawman version, and the shape of the context files involved. You don’t need to share their contents — file names and structure are usually enough.</p>
+
+<p>Feature arguments belong in <a href="https://github.com/your-github-username/clawman/issues">issues</a>. The bar for adding something is whether it helps you trust your context files more.</p>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <svg class="mark" width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+</svg>
+
+      <div>
+        <div class="brand-name">clawman</div>
+        <p class="footer-tagline">Context, in good claws.</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav">
+      <div>
+        <h4>Product</h4>
+        <a href="/features/">Features</a>
+        <a href="/docs/">Docs</a>
+        <a href="/api/">API</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=clawman.clawman">Marketplace</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="/blog/">Dev log</a>
+        <a href="https://github.com/your-github-username/clawman">Source</a>
+        <a href="https://github.com/your-github-username/clawman/issues">Issues</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="/feed.xml">RSS</a>
+        <a href="https://github.com/your-github-username/clawman/releases">Releases</a>
+      </div>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; 2026 Clawman. MIT licensed.</span>
+    <span>Somebody has to keep the shelf tidy.</span>
+  </div>
+</footer>
+
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
