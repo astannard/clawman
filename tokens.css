@@ -1,0 +1,99 @@
+/* Clawman design tokens v1.0 */
+
+:root {
+  /* Brand — Shell */
+  --cm-shell-100: #FBE3D8;
+  --cm-shell-400: #F5825B;
+  --cm-shell-500: #E1552C;
+  --cm-shell-600: #C4441F;
+  --cm-shell-700: #A83817;
+
+  /* Neutrals — Deep (dark) */
+  --cm-deep-900: #10161B;
+  --cm-deep-800: #171F26;
+  --cm-deep-700: #1F2A33;
+  --cm-deep-600: #2C3A45;
+
+  /* Neutrals — Sand (light) */
+  --cm-sand-100: #FAF6F0;
+  --cm-sand-200: #F1E9DE;
+  --cm-sand-300: #E2D7C7;
+  --cm-ink-900:  #0C1013;
+
+  /* Silt — secondary text */
+  --cm-silt-300: #A8B4BE;
+  --cm-silt-500: #6E7C88;
+  --cm-silt-600: #5A6772;
+  --cm-silt-700: #4A555F;
+
+  /* Status — file health */
+  --cm-kelp-400: #3FBF89;  /* fresh    */
+  --cm-kelp-500: #1F9D6B;
+  --cm-kelp-700: #12744F;
+  --cm-buoy-400: #F5BE4A;  /* stale    */
+  --cm-buoy-500: #E8A317;
+  --cm-buoy-700: #8A5A00;
+  --cm-anem-400: #F0577F;  /* conflict */
+  --cm-anem-500: #D92D5C;
+  --cm-anem-700: #B81F4C;
+
+  /* Type */
+  --cm-font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  --cm-font-text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --cm-font-code: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Space — 4px base */
+  --cm-space-1: 4px;   --cm-space-2: 8px;   --cm-space-3: 12px;
+  --cm-space-4: 16px;  --cm-space-6: 24px;  --cm-space-8: 32px;
+  --cm-space-12: 48px; --cm-space-16: 64px; --cm-space-24: 96px;
+
+  /* Radius */
+  --cm-radius-sm: 4px;
+  --cm-radius-md: 8px;
+  --cm-radius-lg: 12px;
+  --cm-radius-pill: 999px;
+
+  /* Motion */
+  --cm-ease: cubic-bezier(.2, 0, 0, 1);
+  --cm-dur-state: 120ms;
+  --cm-dur-enter: 200ms;
+}
+
+/* Semantic — dark (default) */
+:root,
+[data-theme='dark'] {
+  --cm-bg: var(--cm-deep-900);
+  --cm-surface: var(--cm-deep-800);
+  --cm-surface-raised: var(--cm-deep-700);
+  --cm-border: var(--cm-deep-600);
+  --cm-text: var(--cm-sand-100);
+  --cm-text-muted: var(--cm-silt-300);
+  --cm-accent: var(--cm-shell-400);
+  --cm-accent-strong: var(--cm-shell-500);
+  --cm-on-accent: var(--cm-ink-900);
+  --cm-fresh: var(--cm-kelp-400);
+  --cm-stale: var(--cm-buoy-400);
+  --cm-conflict: var(--cm-anem-400);
+  --cm-archived: var(--cm-silt-300);
+}
+
+/* Semantic — light */
+[data-theme='light'] {
+  --cm-bg: var(--cm-sand-100);
+  --cm-surface: var(--cm-sand-200);
+  --cm-surface-raised: #FFFFFF;
+  --cm-border: var(--cm-sand-300);
+  --cm-text: var(--cm-ink-900);
+  --cm-text-muted: var(--cm-silt-600);
+  --cm-accent: var(--cm-shell-600);
+  --cm-accent-strong: var(--cm-shell-500);
+  --cm-on-accent: #FFFFFF;
+  --cm-fresh: var(--cm-kelp-700);
+  --cm-stale: var(--cm-buoy-700);
+  --cm-conflict: var(--cm-anem-700);
+  --cm-archived: var(--cm-silt-600);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --cm-dur-state: 0ms; --cm-dur-enter: 0ms; }
+}

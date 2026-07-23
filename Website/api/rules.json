@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "updated": "2026-07-21",
+  "packs": [
+    {
+      "id": "Node/JavaScript",
+      "label": "Node / JavaScript",
+      "detect": "package.json",
+      "template": "## JS Guidelines\n- Use ES6+ syntax.\n- Handle promises with async/await."
+    },
+    {
+      "id": "Godot/GDScript",
+      "label": "Godot / GDScript",
+      "detect": "project.godot",
+      "template": "## GDScript Guidelines\n- Prefer strong typing.\n- Keep node references in _ready()."
+    },
+    {
+      "id": "Python",
+      "label": "Python",
+      "detect": "requirements.txt",
+      "template": "## Python Guidelines\n- Follow PEP 8 style conventions.\n- Use type hints for public functions."
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+---
+layout: default
+title: "Clawman — Context, in good claws"
+description: "A VS Code extension that finds every Claude context file in your project, flags the stale ones, and surfaces the contradictions."
+---
+
+<section class="hero">
+  <div class="shell hero-grid">
+    <div>
+      <span class="eyebrow">VS Code extension</span>
+      <h1>Context,<br>in <span>good claws</span>.</h1>
+      <p class="lede">
+        Claude reads your context files every single time. Clawman makes sure
+        they're still worth reading.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ site.marketplace }}">Install for VS Code</a>
+        <a class="btn btn-ghost" href="{{ '/features/' | relative_url }}">See how it works</a>
+      </div>
+      <p class="hero-note">Free and open source. MIT licensed. No account.</p>
+    </div>
+
+    <div class="panel" aria-label="Example of the Clawman panel">
+      <div class="panel-head">
+        {% include mark.html size=18 %}
+        <span class="panel-title">Context files</span>
+        <span class="panel-count">4 found</span>
+      </div>
+      <div class="panel-body">
+        <div class="file-row">
+          <span class="file-dot" style="background:var(--fresh)"></span>
+          <span class="file-path">CLAUDE.md</span>
+          <span class="tag t-fresh">Fresh</span>
+          <span class="file-note">Updated 2 days ago</span>
+        </div>
+        <div class="file-row">
+          <span class="file-dot" style="background:var(--stale)"></span>
+          <span class="file-path">.claude/architecture.md</span>
+          <span class="tag t-stale">Stale</span>
+          <span class="file-note">Not touched since 12 March</span>
+        </div>
+        <div class="file-row">
+          <span class="file-dot" style="background:var(--conflict)"></span>
+          <span class="file-path">.claude/skills/testing.md</span>
+          <span class="tag t-conflict">Conflict</span>
+          <span class="file-note">Disagrees with <code>CLAUDE.md</code></span>
+        </div>
+        <div class="file-row">
+          <span class="file-dot" style="background:var(--archived)"></span>
+          <span class="file-path">.claude/legacy-api.md</span>
+          <span class="tag t-archived">Archived</span>
+          <span class="file-note">Excluded by you</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="band-head">
+      <h2>The problem nobody watches</h2>
+      <p class="lede">
+        Context files start clean. One <code>CLAUDE.md</code>, written carefully on a
+        good afternoon. Six weeks later there are eleven of them, two contradict each
+        other about the test command, and one describes a directory that was deleted
+        in March.
+      </p>
+      <p class="lede">Nobody has read any of them since the day they were written. Except Claude. Every single time.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">01</div>
+        <h3>Everything, in one place</h3>
+        <p>Finds <code>CLAUDE.md</code>, <code>.claude/</code> directories, skills, and memory files anywhere in the workspace — including the ones you forgot you wrote.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">02</div>
+        <h3>Stale files, flagged</h3>
+        <p>When a context file stops changing while the code it describes keeps moving, Clawman says so. With a date, not a vibe.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">03</div>
+        <h3>Contradictions, surfaced</h3>
+        <p>Two files giving Claude opposite instructions is worse than no instructions at all. Clawman shows both excerpts side by side.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">04</div>
+        <h3>Dead references, caught</h3>
+        <p>Context files love to describe directories that no longer exist. Clawman checks every path they mention.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">05</div>
+        <h3>Edit in place</h3>
+        <p>Merge two files, archive one, or jump straight to the line that's wrong. No leaving the editor.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">06</div>
+        <h3>Nothing leaves your machine</h3>
+        <p>Clawman reads files on disk. No telemetry, no uploads, no account. It's a filing clerk, not a service.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="band-head">
+      <h2>Three steps, then it's just there</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Install the extension</h3>
+        <p>From the VS Code Marketplace, or <code>ext install clawman.clawman</code> in the command palette.</p>
+      </div>
+      <div class="step">
+        <h3>Open the Clawman panel</h3>
+        <p>It appears in the activity bar. First scan takes about a second on a normal repo.</p>
+      </div>
+      <div class="step">
+        <h3>Read what he found</h3>
+        <p>Four states: fresh, stale, conflict, archived. Sorted worst-first, because that's the list you actually want.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="band-head">
+      <h2>Built in the open</h2>
+      <p class="lede">Every change lands in the dev log first — what shipped, what broke, and what Clawman noticed along the way.</p>
+    </div>
+
+    <div class="post-list">
+      {% for post in site.posts limit:3 %}
+      <a class="post-card" href="{{ post.url | relative_url }}">
+        <div class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %B %Y" }}</time>
+          {% if post.version %}<span class="tag tag-version">{{ post.version }}</span>{% endif %}
+        </div>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.lede | default: post.excerpt | strip_html | truncate: 150 }}</p>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p style="margin-top:var(--s6)"><a href="{{ '/blog/' | relative_url }}">All posts &rarr;</a></p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="cta">
+      <h2>Your assistant is only as good as the notes you left it.</h2>
+      <p class="lede">Clawman keeps the notes honest.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ site.marketplace }}">Install for VS Code</a>
+        <a class="btn btn-ghost" href="{{ site.repo }}">View source</a>
+      </div>
+    </div>
+  </div>
+</section>

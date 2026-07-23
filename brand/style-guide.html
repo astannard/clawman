@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clawman — Brand Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --shell-100:#FBE3D8; --shell-400:#F5825B; --shell-500:#E1552C; --shell-600:#C4441F; --shell-700:#A83817;
+  --deep-900:#10161B; --deep-800:#171F26; --deep-700:#1F2A33; --deep-600:#2C3A45;
+  --sand-100:#FAF6F0; --sand-200:#F1E9DE; --sand-300:#E2D7C7; --ink-900:#0C1013;
+  --silt-300:#A8B4BE; --silt-500:#6E7C88; --silt-600:#5A6772; --silt-700:#4A555F;
+  --kelp-400:#3FBF89; --kelp-500:#1F9D6B; --kelp-700:#12744F;
+  --buoy-400:#F5BE4A; --buoy-500:#E8A317; --buoy-700:#8A5A00;
+  --anem-400:#F0577F; --anem-500:#D92D5C; --anem-700:#B81F4C;
+  --f-display:'Bricolage Grotesque','Inter',system-ui,sans-serif;
+  --f-text:'Inter',system-ui,-apple-system,sans-serif;
+  --f-code:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.2,0,0,1);
+}
+[data-theme=dark]{--bg:var(--deep-900);--surface:var(--deep-800);--raised:var(--deep-700);--border:var(--deep-600);
+  --text:var(--sand-100);--muted:var(--silt-300);--accent:var(--shell-400);--on-accent:var(--ink-900);
+  --fresh:var(--kelp-400);--stale:var(--buoy-400);--conflict:var(--anem-400);--archived:var(--silt-300);--shadow:none;}
+[data-theme=light]{--bg:var(--sand-100);--surface:var(--sand-200);--raised:#fff;--border:var(--sand-300);
+  --text:var(--ink-900);--muted:var(--silt-600);--accent:var(--shell-600);--on-accent:#fff;
+  --fresh:var(--kelp-700);--stale:var(--buoy-700);--conflict:var(--anem-700);--archived:var(--silt-600);
+  --shadow:0 1px 3px rgba(12,16,19,.08),0 1px 2px rgba(12,16,19,.04);}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-text);font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;transition:background var(--ease) 200ms,color var(--ease) 200ms}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px 128px}
+code,.mono{font-family:var(--f-code);font-size:.875em;font-variant-ligatures:none}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--border);
+  padding:20px 32px;display:flex;align-items:center;gap:16px}
+header .in{max-width:1080px;margin:0 auto;width:100%;display:flex;align-items:center;gap:16px}
+header .name{font-family:var(--f-display);font-weight:700;font-size:22px;letter-spacing:-.02em}
+header .ver{color:var(--muted);font-size:12px;font-weight:500;margin-left:auto}
+.toggle{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;
+  padding:7px 15px;font-family:var(--f-text);font-size:13px;font-weight:500;cursor:pointer;transition:all var(--ease) 120ms}
+.toggle:hover{border-color:var(--accent);color:var(--accent)}
+
+/* hero */
+.hero{padding:88px 0 64px;border-bottom:1px solid var(--border)}
+.hero h1{font-family:var(--f-display);font-size:clamp(44px,7vw,72px);line-height:1.03;letter-spacing:-.03em;
+  font-weight:700;margin:24px 0 16px}
+.hero p{font-size:19px;line-height:1.55;color:var(--muted);max-width:36em;margin:0}
+
+section{padding:64px 0;border-bottom:1px solid var(--border)}
+h2{font-family:var(--f-display);font-size:30px;line-height:1.2;letter-spacing:-.02em;font-weight:600;margin:0 0 8px}
+.lede{color:var(--muted);margin:0 0 32px;max-width:62ch}
+h3{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  margin:40px 0 14px}
+h3:first-of-type{margin-top:0}
+
+/* swatches */
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px}
+.chip{border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;background:var(--surface);
+  transition:transform var(--ease) 120ms}
+.chip:hover{transform:translateY(-2px)}
+.chip .fill{height:76px}
+.chip .meta{padding:9px 11px}
+.chip .n{font-size:12px;font-weight:600}
+.chip .h{font-family:var(--f-code);font-size:11px;color:var(--muted);margin-top:2px}
+.chip .r{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.35}
+
+/* type */
+.spec{border-top:1px solid var(--border);padding:22px 0;display:grid;grid-template-columns:132px 1fr;gap:24px;align-items:baseline}
+.spec .lbl{font-size:11px;color:var(--muted);font-family:var(--f-code);line-height:1.5}
+.d56{font-family:var(--f-display);font-weight:700;font-size:56px;line-height:1.07;letter-spacing:-.03em}
+.d40{font-family:var(--f-display);font-weight:700;font-size:40px;line-height:1.1;letter-spacing:-.02em}
+.d30{font-family:var(--f-display);font-weight:600;font-size:30px;line-height:1.2;letter-spacing:-.02em}
+.t22{font-weight:600;font-size:22px;line-height:1.36}
+.t18{font-size:18px;line-height:1.55}
+.t16{font-size:16px;line-height:1.5}
+.t14{font-size:14px;line-height:1.43}
+.t12{font-size:12px;line-height:1.33;font-weight:500}
+.tcode{font-family:var(--f-code);font-size:14px;line-height:1.57}
+
+/* logo */
+.logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.lbox{border:1px solid var(--border);border-radius:12px;padding:32px 20px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;min-height:170px}
+.lbox .cap{font-size:11px;font-family:var(--f-code);color:var(--muted);text-align:center}
+.lbox.on-dark{background:var(--deep-900);border-color:var(--deep-600)}
+.lbox.on-dark .cap{color:var(--silt-300)}
+.lbox.on-light{background:var(--sand-100);border-color:var(--sand-300)}
+.lbox.on-light .cap{color:var(--silt-600)}
+.sizes{display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap;padding:26px;border:1px solid var(--border);border-radius:12px}
+.sizes figure{margin:0;text-align:center}
+.sizes figcaption{font-family:var(--f-code);font-size:10px;color:var(--muted);margin-top:9px}
+
+/* components */
+.demo{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:var(--shadow)}
+.btn{font-family:var(--f-text);font-size:14px;font-weight:500;border-radius:8px;padding:9px 17px;cursor:pointer;
+  border:1px solid transparent;transition:all var(--ease) 120ms}
+.btn-primary{background:var(--shell-500);color:#fff}
+.btn-primary:hover{background:var(--shell-600)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.filelist{list-style:none;margin:0;padding:0}
+.filelist li{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--border)}
+.filelist li:last-child{border-bottom:0}
+.dot{width:8px;height:8px;border-radius:999px;flex:none}
+.filelist .path{font-family:var(--f-code);font-size:13px}
+.filelist .note{font-size:13px;color:var(--muted);margin-left:auto;text-align:right}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;padding:4px 9px;border-radius:4px;border:1px solid}
+
+/* voice */
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.vcard{border:1px solid var(--border);border-radius:8px;padding:16px 18px}
+.vcard.ok{border-left:3px solid var(--kelp-500)}
+.vcard.no{border-left:3px solid var(--anem-500)}
+.vcard .tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.vcard.ok .tag{color:var(--fresh)}
+.vcard.no .tag{color:var(--conflict)}
+.vcard p{margin:0;font-size:15px;line-height:1.5}
+.vcard.no p{color:var(--muted)}
+.ctx{font-size:11px;font-family:var(--f-code);color:var(--muted);margin:22px 0 8px}
+
+/* misc */
+.rules{margin:0;padding:0;list-style:none;counter-reset:r}
+.rules li{counter-increment:r;position:relative;padding:14px 0 14px 42px;border-bottom:1px solid var(--border);font-size:15px}
+.rules li:last-child{border-bottom:0}
+.rules li::before{content:counter(r);position:absolute;left:0;top:14px;width:24px;height:24px;border-radius:6px;
+  background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;
+  font-size:11px;font-weight:600;color:var(--accent);font-family:var(--f-code)}
+.rules b{font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;padding:0 12px 10px 0;border-bottom:1px solid var(--border)}
+td{padding:11px 12px 11px 0;border-bottom:1px solid var(--border);vertical-align:top}
+.pill{font-family:var(--f-code);font-size:12px;background:var(--surface);border:1px solid var(--border);
+  border-radius:4px;padding:2px 6px}
+.no-list{list-style:none;padding:0;margin:0;font-size:15px}
+.no-list li{padding:9px 0 9px 26px;position:relative;border-bottom:1px solid var(--border)}
+.no-list li:last-child{border-bottom:0}
+.no-list li::before{content:'✕';position:absolute;left:0;color:var(--conflict);font-size:12px;top:11px}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--shell-500);
+  color:#fff;padding:10px 20px;border-radius:999px;font-size:13px;font-weight:500;font-family:var(--f-code);
+  transition:transform var(--ease) 200ms;pointer-events:none;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:720px){.vgrid{grid-template-columns:1fr}.spec{grid-template-columns:1fr;gap:8px}.wrap{padding:0 20px 96px}}
+</style>
+</head>
+<body>
+
+<header><div class="in">
+  <svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+    <path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/>
+    <path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/>
+    <rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/>
+  </svg>
+  <span class="name">clawman</span>
+  <span class="ver">Brand v1.0</span>
+  <button class="toggle" onclick="tog()"><span id="tt">Light mode</span></button>
+</div></header>
+
+<div class="wrap">
+
+<div class="hero">
+  <span class="badge" style="color:var(--accent);border-color:var(--accent)">Brand style guide</span>
+  <h1>Context,<br>in good claws.</h1>
+  <p>Claude reads your context files every single time. Clawman makes sure they're still worth reading. This is the system that makes him look like himself.</p>
+</div>
+
+<!-- LOGO -->
+<section>
+  <h2>Logo</h2>
+  <p class="lede">An asymmetric pincer forming a <b>C</b>, gripping a file. Claw, initial, and core function in one shape. The upper prong is heavier and longer than the lower — that asymmetry is what stops it reading as a plain letter C. Don't even it out.</p>
+
+  <div class="logos">
+    <div class="lbox on-light">
+      <svg width="62" height="62" viewBox="0 0 64 64" fill="none">
+        <path d="M17 35C19 18 34 12 49 21" stroke="#E1552C" stroke-width="11.5" stroke-linecap="round"/>
+        <path d="M17 37C21 47 28 49 37 45" stroke="#E1552C" stroke-width="8.5" stroke-linecap="round"/>
+        <rect x="24" y="26" width="11" height="13" rx="2.5" fill="#F5825B"/></svg>
+      <span class="cap">Shell on light — default</span>
+    </div>
+    <div class="lbox on-dark">
+      <svg width="62" height="62" viewBox="0 0 64 64" fill="none">
+        <path d="M17 35C19 18 34 12 49 21" stroke="#F5825B" stroke-width="11.5" stroke-linecap="round"/>
+        <path d="M17 37C21 47 28 49 37 45" stroke="#F5825B" stroke-width="8.5" stroke-linecap="round"/>
+        <rect x="24" y="26" width="11" height="13" rx="2.5" fill="#FBE3D8"/></svg>
+      <span class="cap">Shell-400 on dark</span>
+    </div>
+    <div class="lbox on-light" style="color:#0C1013">
+      <svg width="62" height="62" viewBox="0 0 64 64" fill="none" stroke="currentColor">
+        <path d="M17 35C19 18 34 12 49 21" stroke-width="11.5" stroke-linecap="round"/>
+        <path d="M17 37C21 47 28 49 37 45" stroke-width="8.5" stroke-linecap="round"/>
+        <rect x="24" y="26" width="11" height="13" rx="2.5" fill="currentColor" stroke="none"/></svg>
+      <span class="cap">Mono ink</span>
+    </div>
+    <div class="lbox on-dark" style="color:#FAF6F0">
+      <svg width="62" height="62" viewBox="0 0 64 64" fill="none" stroke="currentColor">
+        <path d="M17 35C19 18 34 12 49 21" stroke-width="11.5" stroke-linecap="round"/>
+        <path d="M17 37C21 47 28 49 37 45" stroke-width="8.5" stroke-linecap="round"/>
+        <rect x="24" y="26" width="11" height="13" rx="2.5" fill="currentColor" stroke="none"/></svg>
+      <span class="cap">Mono reversed</span>
+    </div>
+  </div>
+
+  <h3>Lockup</h3>
+  <div class="logos" style="grid-template-columns:1fr 1fr">
+    <div class="lbox on-light">
+      <svg width="230" viewBox="0 0 260 64" fill="none">
+        <path d="M17 35C19 18 34 12 49 21" stroke="#E1552C" stroke-width="11.5" stroke-linecap="round"/>
+        <path d="M17 37C21 47 28 49 37 45" stroke="#E1552C" stroke-width="8.5" stroke-linecap="round"/>
+        <rect x="24" y="26" width="11" height="13" rx="2.5" fill="#F5825B"/>
+        <text x="76" y="42" font-family="Bricolage Grotesque, Inter, sans-serif" font-size="34" font-weight="700" letter-spacing="-.8" fill="#0C1013">clawman</text></svg>
+      <span class="cap">clawman-lockup.svg</span>
+    </div>
+    <div class="lbox on-dark">
+      <svg width="230" viewBox="0 0 260 64" fill="none">
+        <path d="M17 35C19 18 34 12 49 21" stroke="#F5825B" stroke-width="11.5" stroke-linecap="round"/>
+        <path d="M17 37C21 47 28 49 37 45" stroke="#F5825B" stroke-width="8.5" stroke-linecap="round"/>
+        <rect x="24" y="26" width="11" height="13" rx="2.5" fill="#FBE3D8"/>
+        <text x="76" y="42" font-family="Bricolage Grotesque, Inter, sans-serif" font-size="34" font-weight="700" letter-spacing="-.8" fill="#FAF6F0">clawman</text></svg>
+      <span class="cap">clawman-lockup-dark.svg</span>
+    </div>
+  </div>
+
+  <h3>Size behaviour</h3>
+  <div class="sizes">
+    <figure><svg width="16" height="16" viewBox="0 0 64 64" fill="none" stroke="var(--accent)"><path d="M17 35C19 18 34 12 49 21" stroke-width="11.5" stroke-linecap="round"/><path d="M17 37C21 47 28 49 37 45" stroke-width="8.5" stroke-linecap="round"/><rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--accent)" stroke="none"/></svg><figcaption>16px mono</figcaption></figure>
+    <figure><svg width="24" height="24" viewBox="0 0 64 64" fill="none" stroke="var(--accent)"><path d="M17 35C19 18 34 12 49 21" stroke-width="11.5" stroke-linecap="round"/><path d="M17 37C21 47 28 49 37 45" stroke-width="8.5" stroke-linecap="round"/><rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--accent)" stroke="none"/></svg><figcaption>24px mono</figcaption></figure>
+    <figure><svg width="40" height="40" viewBox="0 0 64 64" fill="none"><path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/><path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/><rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/></svg><figcaption>40px two-tone</figcaption></figure>
+    <figure><svg width="72" height="72" viewBox="0 0 64 64" fill="none"><path d="M17 35C19 18 34 12 49 21" stroke="var(--shell-500)" stroke-width="11.5" stroke-linecap="round"/><path d="M17 37C21 47 28 49 37 45" stroke="var(--shell-500)" stroke-width="8.5" stroke-linecap="round"/><rect x="24" y="26" width="11" height="13" rx="2.5" fill="var(--shell-400)"/></svg><figcaption>72px two-tone</figcaption></figure>
+  </div>
+
+  <h3>Rules</h3>
+  <table>
+    <tr><th>Clearspace</th><td>Width of the gripped file rectangle (¼ of mark height) on all sides. Nothing enters it.</td></tr>
+    <tr><th>Minimum</th><td>16 px mark on screen · 8 mm in print · 120 px lockup on screen. Below 20 px use the <b>mono</b> mark — the two-tone file muddies.</td></tr>
+    <tr><th>VS Code</th><td>Activity bar always uses the mono mark with <span class="pill">currentColor</span> so it inherits editor theming.</td></tr>
+    <tr><th>Production</th><td>Lockup SVGs use live <span class="pill">&lt;text&gt;</span>. Convert to outlines before shipping.</td></tr>
+  </table>
+
+  <h3>Never</h3>
+  <ul class="no-list">
+    <li>Recolour outside the four approved colourways</li>
+    <li>Stretch, skew, rotate, or flip</li>
+    <li>Add gradients, bevels, glows, or drop shadows</li>
+    <li>Outline the wordmark or change its typeface</li>
+    <li>Place in a circle or badge that isn't the app icon</li>
+    <li>Rebuild from scratch — use the supplied SVGs</li>
+    <li>Stack vertically or re-space mark and wordmark</li>
+    <li>Set on a photograph without a solid colour field behind</li>
+  </ul>
+</section>
+
+<!-- COLOUR -->
+<section>
+  <h2>Colour</h2>
+  <p class="lede">Warm shell against cold deep water. The orange is the only loud thing in the system, and it stays loud by being rare. Click any swatch to copy its hex.</p>
+
+  <h3>Brand — Shell</h3>
+  <div class="sw" id="sw-shell"></div>
+  <h3>Neutrals — Deep (dark UI)</h3>
+  <div class="sw" id="sw-deep"></div>
+  <h3>Neutrals — Sand (light UI)</h3>
+  <div class="sw" id="sw-sand"></div>
+  <h3>Silt — secondary text</h3>
+  <div class="sw" id="sw-silt"></div>
+  <h3>Status — the file-health scale</h3>
+  <div class="sw" id="sw-status"></div>
+
+  <h3>Rules</h3>
+  <ol class="rules">
+    <li><b>Shell is never a status colour.</b> Brand orange means Clawman — action, identity, brand. It never means "warning." Buoy amber sits close in hue, which is exactly why the status scale is defined independently.</li>
+    <li><b>One Shell per view.</b> One primary button, or one active state, or one accent. If everything's orange, nothing is.</li>
+    <li><b>Dark is the default.</b> Clawman lives in an editor. Design dark first, derive light.</li>
+    <li><b>Status colour is never the only signal.</b> Always pair with an icon and a text label.</li>
+    <li><b>Never tint large surfaces with Shell.</b> No orange backgrounds or cards. Fills use <span class="pill">shell-100</span> at most.</li>
+    <li><b>Borders are one step, not two.</b> <span class="pill">deep-600</span> on dark, <span class="pill">sand-300</span> on light. Don't invent intermediate greys.</li>
+  </ol>
+
+  <h3>Verified contrast</h3>
+  <table>
+    <thead><tr><th>Pairing</th><th>Ratio</th><th>Level</th></tr></thead>
+    <tbody id="contrast"></tbody>
+  </table>
+  <p style="font-size:13px;color:var(--muted);margin-top:14px"><span class="pill">shell-500</span> on light sits at 3.5:1 — large text and graphics only. Use <span class="pill">shell-600</span> or <span class="pill">shell-700</span> for body copy.</p>
+</section>
+
+<!-- TYPE -->
+<section>
+  <h2>Typography</h2>
+  <p class="lede">Three families, each with one job. <b>Bricolage Grotesque</b> carries the character. <b>Inter</b> stays out of the way. <b>JetBrains Mono</b> means "this is literally what's in the file" — and only ever that.</p>
+
+  <div class="spec"><div class="lbl">Display<br>Bricolage 700<br>56/60 · -.03em</div><div class="d56">Context, in good claws</div></div>
+  <div class="spec"><div class="lbl">H1<br>Bricolage 700<br>40/44 · -.02em</div><div class="d40">Eleven files, two of them arguing</div></div>
+  <div class="spec"><div class="lbl">H2<br>Bricolage 600<br>30/36 · -.02em</div><div class="d30">Not touched since March</div></div>
+  <div class="spec"><div class="lbl">H3<br>Inter 600<br>22/30</div><div class="t22">Claude reads all of it, every time</div></div>
+  <div class="spec"><div class="lbl">Body L<br>Inter 400<br>18/28</div><div class="t18">Context files start clean. One CLAUDE.md, written carefully on a good afternoon. Six weeks later there are eleven of them.</div></div>
+  <div class="spec"><div class="lbl">Body<br>Inter 400<br>16/24</div><div class="t16">This is the quiet failure mode of working with AI on a real codebase: the instructions rot, and the rot is invisible. Your assistant gets worse and you assume it's the model.</div></div>
+  <div class="spec"><div class="lbl">Small<br>Inter 400<br>14/20</div><div class="t14">Scans your workspace for CLAUDE.md, .claude directories, skills, and memory files.</div></div>
+  <div class="spec"><div class="lbl">Micro<br>Inter 500<br>12/16</div><div class="t12">Last modified 12 March 2026</div></div>
+  <div class="spec"><div class="lbl">Code<br>JetBrains 400<br>14/22 · no ligatures</div><div class="tcode">.claude/skills/testing.md → 2 conflicts</div></div>
+
+  <h3>Rules</h3>
+  <ol class="rules">
+    <li><b>Never set body copy in Bricolage.</b> Nothing under 24 px.</li>
+    <li><b>Never set headings in JetBrains Mono.</b> Monospace means one thing; keep it meaning only that.</li>
+    <li><b>Two weights per screen.</b> Regular plus one emphasis weight. Weight carries hierarchy before size does.</li>
+    <li><b>Measure 60–75 characters</b> for body text. Marketing copy sits at the lower end.</li>
+    <li><b>Sentence case everywhere.</b> No all-caps except Micro badges, at <span class="pill">.06em</span> tracking.</li>
+    <li><b>Never fake a weight.</b> No synthetic bold or italic — load the real cut.</li>
+  </ol>
+  <p style="font-size:13px;color:var(--muted);margin-top:14px">All three families are open source. A developer tool should ship a brand anyone can rebuild without a licence.</p>
+</section>
+
+<!-- VOICE -->
+<section>
+  <h2>Tone of voice</h2>
+  <p class="lede">Meticulous, not fussy. Warm, not cute. Dry, not snarky. Direct, not curt. The humour is understatement, and it's seasoning — a tool that's constantly winking is a tool you stop trusting.</p>
+
+  <ol class="rules">
+    <li><b>Lead with the noun.</b> Say what happened to what.</li>
+    <li><b>Short sentences. Concrete words.</b> If a sentence needs a comma to survive, it needs a full stop instead.</li>
+    <li><b>Never inflate.</b> Banned: <i>seamlessly, effortlessly, supercharge, revolutionise, leverage, unlock, game-changing, next-generation, powerful, magic.</i></li>
+    <li><b>"You" for the user, "Clawman" for the product.</b> "We" only in the changelog.</li>
+    <li><b>One joke per screen, maximum.</b></li>
+  </ol>
+
+  <div class="ctx">// empty state</div>
+  <div class="vgrid">
+    <div class="vcard ok"><div class="tag">On brand</div><p>No context files yet. Write a <code>CLAUDE.md</code> and it'll show up here.</p></div>
+    <div class="vcard no"><div class="tag">Off brand</div><p>Get started on your AI journey! 🚀</p></div>
+  </div>
+  <div class="ctx">// stale file</div>
+  <div class="vgrid">
+    <div class="vcard ok"><div class="tag">On brand</div><p>Not touched since 12 March. Still true?</p></div>
+    <div class="vcard no"><div class="tag">Off brand</div><p>⚠️ WARNING: Outdated context detected!</p></div>
+  </div>
+  <div class="ctx">// conflict</div>
+  <div class="vgrid">
+    <div class="vcard ok"><div class="tag">On brand</div><p><code>CLAUDE.md</code> and <code>.claude/testing.md</code> disagree about your test command. Claude reads both.</p></div>
+    <div class="vcard no"><div class="tag">Off brand</div><p>Potential inconsistency identified across context sources.</p></div>
+  </div>
+  <div class="ctx">// success</div>
+  <div class="vgrid">
+    <div class="vcard ok"><div class="tag">On brand</div><p>Tidied. 3 files merged, 1 archived.</p></div>
+    <div class="vcard no"><div class="tag">Off brand</div><p>Success! Your context has been seamlessly optimised!</p></div>
+  </div>
+  <div class="ctx">// marketing</div>
+  <div class="vgrid">
+    <div class="vcard ok"><div class="tag">On brand</div><p>Your assistant is only as good as the notes you left it. Clawman keeps the notes honest.</p></div>
+    <div class="vcard no"><div class="tag">Off brand</div><p>Supercharge your AI workflow with next-generation context orchestration.</p></div>
+  </div>
+
+  <h3>Conventions</h3>
+  <table>
+    <tr><th>Name</th><td><b>Clawman</b> capitalised in prose, lowercase in the wordmark. Never ClawMan, clawMan, or Claw Man.</td></tr>
+    <tr><th>Punctuation</th><td>No exclamation marks in product UI. One per release in the changelog, if earned. Oxford comma: yes.</td></tr>
+    <tr><th>Emoji</th><td>None in product UI. Sparingly in README and release notes.</td></tr>
+    <tr><th>Case</th><td>Sentence case for every heading, button, and label. Never Title Case.</td></tr>
+    <tr><th>Paths</th><td>Every file name in monospace, always.</td></tr>
+  </table>
+</section>
+
+<!-- IN USE -->
+<section>
+  <h2>The system in use</h2>
+  <p class="lede">Status colour never travels alone — it always arrives with an icon and a label. Here's the file-health scale doing its actual job.</p>
+
+  <div class="demo">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+      <strong style="font-size:15px">Context files</strong>
+      <span style="font-size:13px;color:var(--muted)">4 in this workspace</span>
+      <button class="btn btn-primary" style="margin-left:auto">Tidy up</button>
+      <button class="btn btn-ghost">Rescan</button>
+    </div>
+    <ul class="filelist">
+      <li><span class="dot" style="background:var(--fresh)"></span>
+        <span class="path">CLAUDE.md</span>
+        <span class="badge" style="color:var(--fresh);border-color:var(--fresh)">Fresh</span>
+        <span class="note">Updated 2 days ago</span></li>
+      <li><span class="dot" style="background:var(--stale)"></span>
+        <span class="path">.claude/architecture.md</span>
+        <span class="badge" style="color:var(--stale);border-color:var(--stale)">Stale</span>
+        <span class="note">Not touched since 12 March</span></li>
+      <li><span class="dot" style="background:var(--conflict)"></span>
+        <span class="path">.claude/skills/testing.md</span>
+        <span class="badge" style="color:var(--conflict);border-color:var(--conflict)">Conflict</span>
+        <span class="note">Disagrees with <code>CLAUDE.md</code></span></li>
+      <li><span class="dot" style="background:var(--archived)"></span>
+        <span class="path">.claude/legacy-api.md</span>
+        <span class="badge" style="color:var(--archived);border-color:var(--archived)">Archived</span>
+        <span class="note">Excluded by you</span></li>
+    </ul>
+  </div>
+
+  <h3>Layout, shape and motion</h3>
+  <table>
+    <tr><th>Spacing</th><td>4 px base. Use 4, 8, 12, 16, 24, 32, 48, 64, 96. Nothing between.</td></tr>
+    <tr><th>Radii</th><td><span class="pill">4px</span> inputs and badges · <span class="pill">8px</span> cards and buttons · <span class="pill">12px</span> panels and modals · <span class="pill">999px</span> pills only.</td></tr>
+    <tr><th>Borders</th><td>1 px, always. Emphasis comes from surface elevation and colour, not thicker strokes.</td></tr>
+    <tr><th>Elevation</th><td>On dark, elevate with surface colour (deep-900 → 800 → 700), not shadow. On light, one shadow only.</td></tr>
+    <tr><th>Motion</th><td>120 ms state, 200 ms entrance, <span class="pill">cubic-bezier(.2,0,0,1)</span>. Nothing bounces — precise things don't wobble.</td></tr>
+    <tr><th>Icons</th><td>1.5 px stroke, round caps and joins, 24 px grid, matched to the mark. Lucide recommended.</td></tr>
+  </table>
+</section>
+
+<section style="border-bottom:0">
+  <h2>Before you ship</h2>
+  <ol class="rules">
+    <li>Exactly one Shell accent in this view?</li>
+    <li>Every status colour paired with an icon <b>and</b> a label?</li>
+    <li>All display type above 24 px, all body type in Inter?</li>
+    <li>All file paths in monospace?</li>
+    <li>Sentence case throughout — no Title Case, no all-caps?</li>
+    <li>Zero exclamation marks, zero banned words?</li>
+    <li>At most one joke on screen?</li>
+    <li>Does the copy name the actual thing — the file, the count, the date?</li>
+    <li>Mark has full clearspace, in an approved colourway?</li>
+    <li>Every text pairing clears 4.5:1?</li>
+  </ol>
+</section>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const groups={
+ 'sw-shell':[['shell-100','#FBE3D8','Tint fills, subtle highlights'],['shell-400','#F5825B','Primary on dark, hover'],
+   ['shell-500','#E1552C','Primary brand colour'],['shell-600','#C4441F','Pressed; brand text on light'],
+   ['shell-700','#A83817','Small brand text on light']],
+ 'sw-deep':[['deep-900','#10161B','Canvas'],['deep-800','#171F26','Raised surface'],
+   ['deep-700','#1F2A33','Cards, panels, inputs'],['deep-600','#2C3A45','Borders, dividers']],
+ 'sw-sand':[['sand-100','#FAF6F0','Canvas'],['sand-200','#F1E9DE','Raised surface'],
+   ['sand-300','#E2D7C7','Borders, dividers'],['ink-900','#0C1013','Body text on light']],
+ 'sw-silt':[['silt-300','#A8B4BE','Secondary text on dark'],['silt-500','#6E7C88','Disabled, placeholder'],
+   ['silt-600','#5A6772','Secondary text on light'],['silt-700','#4A555F','Emphasised secondary, light']],
+ 'sw-status':[['kelp-400','#3FBF89','Fresh — on dark'],['kelp-500','#1F9D6B','Fresh — on light'],['kelp-700','#12744F','Fresh — text on light'],
+   ['buoy-400','#F5BE4A','Stale — on dark'],['buoy-500','#E8A317','Stale — on light'],['buoy-700','#8A5A00','Stale — text on light'],
+   ['anem-400','#F0577F','Conflict — on dark'],['anem-500','#D92D5C','Conflict — on light'],['anem-700','#B81F4C','Conflict — text on light']]
+};
+for(const [id,list] of Object.entries(groups)){
+  document.getElementById(id).innerHTML=list.map(([n,h,r])=>
+    `<div class="chip" onclick="cp('${h}')"><div class="fill" style="background:${h}"></div>
+     <div class="meta"><div class="n">${n}</div><div class="h">${h}</div><div class="r">${r}</div></div></div>`).join('');
+}
+
+// contrast, computed live
+const s=c=>{c/=255;return c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4)};
+const L=h=>{h=h.replace('#','');const[r,g,b]=[0,2,4].map(i=>parseInt(h.substr(i,2),16));
+  return .2126*s(r)+.7152*s(g)+.0722*s(b)};
+const CR=(a,b)=>{let[x,y]=[L(a),L(b)].sort((p,q)=>q-p);return (x+.05)/(y+.05)};
+const pairs=[['ink-900 on sand-100','#0C1013','#FAF6F0'],['sand-100 on deep-900','#FAF6F0','#10161B'],
+ ['silt-300 on deep-900','#A8B4BE','#10161B'],['silt-600 on sand-100','#5A6772','#FAF6F0'],
+ ['shell-400 on deep-900','#F5825B','#10161B'],['shell-600 on sand-100','#C4441F','#FAF6F0'],
+ ['ink-900 on shell-500','#0C1013','#E1552C'],['kelp-400 on deep-900','#3FBF89','#10161B'],
+ ['kelp-700 on sand-100','#12744F','#FAF6F0'],['buoy-400 on deep-900','#F5BE4A','#10161B'],
+ ['buoy-700 on sand-100','#8A5A00','#FAF6F0'],['anem-400 on deep-900','#F0577F','#10161B'],
+ ['anem-700 on sand-100','#B81F4C','#FAF6F0']];
+document.getElementById('contrast').innerHTML=pairs.map(([n,a,b])=>{
+  const v=CR(a,b), lvl=v>=7?'AAA':v>=4.5?'AA':'AA large';
+  const col=v>=4.5?'var(--fresh)':'var(--stale)';
+  return `<tr><td><span class="pill">${n}</span></td><td class="mono">${v.toFixed(2)} : 1</td>
+    <td style="color:${col};font-weight:600">${lvl}</td></tr>`}).join('');
+
+function tog(){const r=document.documentElement,d=r.dataset.theme==='dark';
+  r.dataset.theme=d?'light':'dark';document.getElementById('tt').textContent=d?'Dark mode':'Light mode';
+  try{localStorage.setItem('cm-theme',r.dataset.theme)}catch(e){}}
+try{const t=localStorage.getItem('cm-theme');if(t){document.documentElement.dataset.theme=t;
+  document.getElementById('tt').textContent=t==='dark'?'Light mode':'Dark mode';}}catch(e){}
+
+let tid;
+function cp(h){navigator.clipboard?.writeText(h);const t=document.getElementById('toast');
+  t.textContent='Copied '+h;t.classList.add('show');clearTimeout(tid);
+  tid=setTimeout(()=>t.classList.remove('show'),1400)}
+</script>
+</body>
+</html>

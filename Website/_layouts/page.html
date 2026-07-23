@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<article class="shell prose-page">
+  {% if page.title %}
+  <header class="page-head">
+    {% if page.eyebrow %}<span class="eyebrow">{{ page.eyebrow }}</span>{% endif %}
+    <h1>{{ page.title }}</h1>
+    {% if page.lede %}<p class="lede">{{ page.lede }}</p>{% endif %}
+  </header>
+  {% endif %}
+
+  <div class="prose">
+    {{ content }}
+  </div>
+</article>

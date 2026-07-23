@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<article class="shell prose-page">
+  <header class="page-head">
+    <a class="back-link" href="{{ '/blog/' | relative_url }}">&larr; Dev log</a>
+
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+      {% if page.version %}<span class="tag tag-version">{{ page.version }}</span>{% endif %}
+      {% for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+    </div>
+
+    <h1>{{ page.title }}</h1>
+    {% if page.lede %}<p class="lede">{{ page.lede }}</p>{% endif %}
+  </header>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  <footer class="post-foot">
+    {% assign posts = site.posts %}
+    {% for p in posts %}
+      {% if p.url == page.url %}
+        {% assign idx = forloop.index0 %}
+      {% endif %}
+    {% endfor %}
+    {% assign newer_i = idx | minus: 1 %}
+    {% assign older_i = idx | plus: 1 %}
+    {% assign newer = posts[newer_i] %}
+    {% assign older = posts[older_i] %}
+    <div class="post-nav">
+      {% if idx > 0 and newer %}<a href="{{ newer.url | relative_url }}"><span>Newer</span>{{ newer.title }}</a>{% else %}<span></span>{% endif %}
+      {% if older %}<a class="ta-r" href="{{ older.url | relative_url }}"><span>Older</span>{{ older.title }}</a>{% endif %}
+    </div>
+
+    <div class="post-cta">
+      <p>Clawman is built in the open. Every change lands here first.</p>
+      <a class="btn btn-ghost" href="{{ '/feed.xml' | relative_url }}">Subscribe via RSS</a>
+      <a class="btn btn-primary" href="{{ site.marketplace }}">Install for VS Code</a>
+    </div>
+  </footer>
+</article>

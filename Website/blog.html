@@ -1,0 +1,36 @@
+---
+layout: default
+title: Dev log
+description: "What shipped, what broke, and what Clawman noticed along the way."
+permalink: /blog/
+---
+
+<div class="shell prose-page">
+  <header class="page-head">
+    <span class="eyebrow">Dev log</span>
+    <h1>What shipped, and why</h1>
+    <p class="lede">
+      Every change to Clawman lands here first — new detections, things that broke,
+      and the occasional note about what he found in someone else's repo.
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>.
+    </p>
+  </header>
+
+  <div class="post-list">
+    {% for post in site.posts %}
+    <a class="post-card" href="{{ post.url | relative_url }}">
+      <div class="post-meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %B %Y" }}</time>
+        {% if post.version %}<span class="tag tag-version">{{ post.version }}</span>{% endif %}
+        {% for t in post.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+      </div>
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.lede | default: post.excerpt | strip_html | truncate: 180 }}</p>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% if site.posts.size == 0 %}
+  <p class="lede">No posts yet. Write one in <code>_posts/</code> and it'll show up here.</p>
+  {% endif %}
+</div>

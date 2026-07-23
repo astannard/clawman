@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" width="260" height="64" role="img" aria-label="Clawman">
+  <title>Clawman</title>
+  <!-- Mark -->
+  <path d="M17 35C19 18 34 12 49 21" stroke="#E1552C" stroke-width="11.5" stroke-linecap="round" fill="none"/>
+  <path d="M17 37C21 47 28 49 37 45" stroke="#E1552C" stroke-width="8.5" stroke-linecap="round" fill="none"/>
+  <rect x="24" y="26" width="11" height="13" rx="2.5" fill="#F5825B"/>
+  <!-- Wordmark. NOTE: convert to outlines before shipping to production. -->
+  <text x="76" y="42" font-family="'Bricolage Grotesque','Inter',system-ui,sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.8" fill="#0C1013">clawman</text>
+</svg>

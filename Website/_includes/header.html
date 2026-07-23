@@ -1,0 +1,21 @@
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      {% include mark.html size=28 %}
+      <span class="brand-name">clawman</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="{{ '/features/' | relative_url }}" {% if page.url contains '/features' %}class="is-active"{% endif %}>Features</a>
+      <a href="{{ '/docs/' | relative_url }}" {% if page.url contains '/docs' %}class="is-active"{% endif %}>Docs</a>
+      <a href="{{ '/api/' | relative_url }}" {% if page.url contains '/api' %}class="is-active"{% endif %}>API</a>
+      <a href="{{ '/blog/' | relative_url }}" {% if page.url contains '/blog' %}class="is-active"{% endif %}>Blog</a>
+      <a href="{{ site.repo }}" class="nav-ext">GitHub</a>
+      <a href="{{ site.marketplace }}" class="btn btn-primary btn-sm">Install</a>
+    </nav>
+  </div>
+</header>

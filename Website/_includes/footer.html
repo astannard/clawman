@@ -1,0 +1,36 @@
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      {% include mark.html size=32 %}
+      <div>
+        <div class="brand-name">clawman</div>
+        <p class="footer-tagline">{{ site.tagline }}</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav">
+      <div>
+        <h4>Product</h4>
+        <a href="{{ '/features/' | relative_url }}">Features</a>
+        <a href="{{ '/docs/' | relative_url }}">Docs</a>
+        <a href="{{ '/api/' | relative_url }}">API</a>
+        <a href="{{ site.marketplace }}">Marketplace</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="{{ '/blog/' | relative_url }}">Dev log</a>
+        <a href="{{ site.repo }}">Source</a>
+        <a href="{{ site.repo }}/issues">Issues</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+        <a href="{{ site.repo }}/releases">Releases</a>
+      </div>
+    </nav>
+  </div>
+  <div class="shell footer-base">
+    <span>&copy; {{ site.time | date: '%Y' }} Clawman. MIT licensed.</span>
+    <span>Somebody has to keep the shelf tidy.</span>
+  </div>
+</footer>
